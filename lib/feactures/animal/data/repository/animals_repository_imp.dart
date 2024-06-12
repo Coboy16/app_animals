@@ -20,15 +20,18 @@ class AnimalsRepositoryImp implements AnimalsRepository {
     try {
       final Animal respAnimal = await animalRemoteDataSource.getInfoAnimal(id);
       return Right(respAnimal);
-    } on DioException {
+    } on DioException catch (e) {
+      print('error:  $e');
+      //TODO:MEJORAR
       return Left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<Failure, List<Animal>>> getListAnimals(String type, int page) async {
+  Future<Either<Failure, List<Animal>>> getListAnimals(type, int page) async {
     try {
-      final List<Animal> listPage = await animalRemoteDataSource.getListAnimalPage(type, page);
+      final mapAnimal = await animalRemoteDataSource.getListAnimalPage(type, page);
+      final List<Animal> listPage = mapAnimal.animalsListPage[type] ?? [];
       return Right(listPage);
     } on DioException {
       return Left(ServerFailure());

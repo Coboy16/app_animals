@@ -9,6 +9,7 @@ class GetInfoAnimalUseCase {
 
   GetInfoAnimalUseCase({required this.animalsRepository});
 
-  Future<Either<Failure, Animal>> call(String id) =>
-      animalsRepository.getAnimal(id);
+  Future<Either<Failure, Animal>> call(String id) {
+    return animalsRepository.getAnimal(id);
+  }
 }

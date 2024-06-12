@@ -1,26 +1,30 @@
 part of 'animals_list_bloc.dart';
 
 class AnimalsListState extends Equatable {
-  final bool isLoading;
+  final bool isLoadingList;
+  final bool isLoadingAnimal;
   final Animal? animalInfo;
   final List<Animal> listPageAnimal;
   final Failure? failure;
 
   const AnimalsListState({
-    this.isLoading = false,
-    this.listPageAnimal = const [],
+    this.isLoadingAnimal = false, 
+    this.isLoadingList   = false,
+    this.listPageAnimal  = const [],
     this.animalInfo,
     this.failure,
   });
 
   AnimalsListState copyWith({
-    bool? isLoading,
+    bool? isLoadingAnimal,
+    bool? isLoadingList,
     Animal? animalInfo,
     List<Animal>? listPageAnimal,
     Failure? failure,
   }) =>
       AnimalsListState(
-        isLoading: isLoading ?? this.isLoading,
+        isLoadingList: isLoadingList ?? this.isLoadingList,
+        isLoadingAnimal: isLoadingAnimal ?? this.isLoadingAnimal,
         animalInfo: animalInfo ?? this.animalInfo,
         listPageAnimal: listPageAnimal ?? this.listPageAnimal,
         failure: failure ?? this.failure,
@@ -28,7 +32,8 @@ class AnimalsListState extends Equatable {
 
   @override
   List<Object?> get props => [
-        isLoading,
+        isLoadingList,
+        isLoadingAnimal,
         animalInfo,
         listPageAnimal,
         failure,

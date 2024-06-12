@@ -11,28 +11,33 @@ class AnimalModel extends Animal {
     required super.description,
     required super.weight,
     required super.profilePhoto,
-    super.photos,
+    super.photos = const [],
     required super.type,
+    required super.address,
   });
 
-  factory AnimalModel.fromJson(json) {
+  factory AnimalModel.fromJson(Map<String, dynamic> json) {
     return AnimalModel(
-      id: json['id'],
-      name: json['name'],
-      race: json['race'],
-      sexo: json['sexo'],
-      age: json['age'],
-      vacunate: json['vacunate'],
-      description: json['description'],
-      weight: json['weight'],
-      profilePhoto: json['profilePhoto'],
-      photos: json['photos'],
-      type: json['type'],
+      id: json['_id'],
+      name: json['name'] ?? '',
+      race: json['race'] ?? '',
+      sexo: json['sexo'] ?? '',
+      age: json['age'] ?? 0,
+      vacunate: json['vacunate'] ?? false,
+      description: json['description'] ?? '',
+      weight: json['weight'] ?? 0,
+      profilePhoto: json['profilePhoto'] ?? '',
+      photos: (json['photos'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ?? [],
+      type: json['type'] ?? '',
+      address: json['enterpriseId']?['address'] ?? '',
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
+      '_id': id,
       'name': name,
       'race': race,
       'sexo': sexo,
@@ -43,6 +48,7 @@ class AnimalModel extends Animal {
       'profilePhoto': profilePhoto,
       'photos': photos,
       'type': type,
+      'enterpriseId': {'address': address},
     };
   }
 
@@ -57,7 +63,9 @@ class AnimalModel extends Animal {
       description: animal.description,
       weight: animal.weight,
       profilePhoto: animal.profilePhoto,
+      photos: animal.photos,
       type: animal.type,
+      address: animal.address,
     );
   }
 }

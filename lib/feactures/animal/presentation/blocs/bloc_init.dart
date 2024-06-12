@@ -1,10 +1,14 @@
+import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// ignore: depend_on_referenced_packages
+import 'package:provider/single_child_widget.dart';
 
 import '/feactures/animal/presentation/blocs/blocs.dart';
 
-List<BlocProvider> getListBlocAnimal() {
+ List<SingleChildWidget> getListBlocAnimal() {
   return [
-    BlocProvider(create: (context) => AnimalsListBloc()),
-    BlocProvider(create: (context) => SearchAnimalBloc()),
+    BlocProvider(create: (_) => GetIt.instance.get<AnimalsListBloc>()),
+    BlocProvider(create: (_) => SearchAnimalBloc()),
   ];
 }
