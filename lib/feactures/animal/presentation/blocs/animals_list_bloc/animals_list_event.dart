@@ -21,3 +21,9 @@ class GetInfoAnimalIdEvent extends AnimalsListEvent {
   final String id;
   const GetInfoAnimalIdEvent(this.id);
 }
+
+class GetListAnimalsTypeAndPageEvent extends AnimalsListEvent {
+  final String type;
+  final int page;
+  const GetListAnimalsTypeAndPageEvent( {required this.type, required this.page});
+}

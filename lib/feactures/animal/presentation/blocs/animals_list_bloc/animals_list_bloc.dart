@@ -10,7 +10,11 @@ part 'animals_list_state.dart';
 
 class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
   final GetInfoAnimalUseCase _getInfoAnimalUseCase;
-  AnimalsListBloc(this._getInfoAnimalUseCase) : super(const AnimalsListState()) {
+  final GetListAnimalsPageUseCase _getListAnimalsPageUseCase;
+
+  AnimalsListBloc(this._getInfoAnimalUseCase, this._getListAnimalsPageUseCase)
+      : super(const AnimalsListState()) {
+    //
     on<GetInfoAnimalIdEvent>((event, emit) async {
       emit(state.copyWith(isLoadingAnimal: true));
       final resp = await _getInfoAnimalUseCase(event.id);
@@ -19,12 +23,23 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
         (failure) => emit(state.copyWith(failure: failure)),
         (animal) => emit(state.copyWith(animalInfo: animal)),
       );
-      print('data');
-      print(state.animalInfo?.id);
-      print(state.animalInfo?.name);
-      print('data');
 
       emit(state.copyWith(isLoadingAnimal: false));
+    });
+
+    on<GetListAnimalsTypeAndPageEvent>((event, emit) async {
+      emit(state.copyWith(isLoadingList: true));
+      final respList = await _getListAnimalsPageUseCase(event.type, event.page);
+
+      respList.fold(
+        (failure) => emit(state.copyWith(failure: failure)),
+        (listAnimal) => emit(state.copyWith(listPageAnimal: listAnimal)),
+      );
+
+      print('bloc');
+      print('${state.listPageAnimal.length}');
+      print('bloc');
+      emit(state.copyWith(isLoadingList: false));
     });
   }
 }

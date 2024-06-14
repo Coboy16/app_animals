@@ -33,5 +33,5 @@ Future<void> init() async {
 
 
   //Bloc
-  diAnimal.registerFactory(() => AnimalsListBloc(diAnimal()));
+  diAnimal.registerFactory(() => AnimalsListBloc(diAnimal(), diAnimal()));
 }

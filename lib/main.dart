@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 
-import 'feactures/animal/presentation/blocs/blocs.dart';
 import 'feactures/animal/presentation/screens/screens.dart';
 import 'shared/presentation/blocs/bloc_init.dart';
 import 'shared/presentation/themes/themes.dart';
