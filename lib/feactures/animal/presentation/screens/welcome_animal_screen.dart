@@ -65,9 +65,14 @@ class WelcomeAnimalScreen extends StatelessWidget {
       child: Stack(
         children: [
           Align(alignment: Alignment.bottomCenter, child: container),
-          SizedBox(
-            height: size.height * 0.56,
-            child: Image.asset('assets/images/welcome_app_do.png'),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: SizedBox(
+                height: size.height * 0.56,
+                child: Image.asset('assets/images/dopidopi.png'),
+              ),
+            ),
           ),
         ],
       ),
@@ -100,7 +105,7 @@ class WelcomeAnimalScreen extends StatelessWidget {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           width: state.isLoadingList ? size.height * 0.06 : size.width * 0.6,
-          height: size.height * 0.055,
+          height: size.height * 0.063,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(0),
@@ -109,8 +114,14 @@ class WelcomeAnimalScreen extends StatelessWidget {
                   isDarkMode ? Colors.red[900] : const Color(0xfffa6e68),
             ),
             onPressed: () {
-              blocAnimal
-                  .add(GetListAnimalsTypeAndPageEvent(type: 'dogs', page: 1));
+              blocAnimal.add(
+                GetListAnimalsTypeAndPageEvent(
+                  type: 'dogs',
+                  page: (state.numerPageDog + 1),
+                ),
+              );
+
+              // blocAnimal.add(const IsListDataInitEvent(true));
             },
             child: state.isLoadingList
                 ? SizedBox(

@@ -43,9 +43,9 @@ TextStyle textAdoptaAppDog(bool isDarkMode) {
 //btn_continuar
 TextStyle btnWelcomeFontAppDog(bool isDarkMode) {
   return GoogleFonts.workSans(
-    fontSize: 18,
+    fontSize: 19,
     color: isDarkMode ? Colors.black : Colors.white,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w600,
     letterSpacing: 0,
   );
 }
