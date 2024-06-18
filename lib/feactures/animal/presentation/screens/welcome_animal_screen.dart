@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/shared/presentation/blocs/blocs.dart';
 import '/feactures/animal/presentation/resources/resources.dart';
+import '/feactures/animal/presentation/screens/screens.dart';
 import '/feactures/animal/presentation/blocs/blocs.dart';
+import '/shared/presentation/blocs/blocs.dart';
 
 class WelcomeAnimalScreen extends StatelessWidget {
   const WelcomeAnimalScreen({super.key});
@@ -102,6 +103,21 @@ class WelcomeAnimalScreen extends StatelessWidget {
 
     return BlocBuilder<AnimalsListBloc, AnimalsListState>(
       builder: (context, state) {
+        //Cambia de navegacion cuando ya se cargo la data
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (state.navationHome == true) {
+            Navigator.pushAndRemoveUntil(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    const HomeAnimalScreen(),
+                transitionDuration: const Duration(seconds: 0),
+              ),
+              (route) => false,
+            );
+          }
+        });
+
         return AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           width: state.isLoadingList ? size.height * 0.06 : size.width * 0.6,
@@ -113,16 +129,8 @@ class WelcomeAnimalScreen extends StatelessWidget {
               backgroundColor:
                   isDarkMode ? Colors.red[900] : const Color(0xfffa6e68),
             ),
-            onPressed: () {
-              blocAnimal.add(
-                GetListAnimalsTypeAndPageEvent(
-                  type: 'dogs',
-                  page: (state.numerPageDog + 1),
-                ),
-              );
-
-              // blocAnimal.add(const IsListDataInitEvent(true));
-            },
+            onPressed: () => blocAnimal.add(GetListAnimalsTypeAndPageEvent(
+                type: 'dogs', page: (state.numerPageDog + 1))),
             child: state.isLoadingList
                 ? SizedBox(
                     width: size.height * 0.035,

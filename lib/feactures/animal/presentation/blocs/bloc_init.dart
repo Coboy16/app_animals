@@ -6,9 +6,10 @@ import 'package:provider/single_child_widget.dart';
 
 import '/feactures/animal/presentation/blocs/blocs.dart';
 
- List<SingleChildWidget> getListBlocAnimal() {
+List<SingleChildWidget> getListBlocAnimal() {
   return [
     BlocProvider(create: (_) => GetIt.instance.get<AnimalsListBloc>()),
+    BlocProvider(create: (_) => NavegationBarBloc()),
     BlocProvider(create: (_) => SearchAnimalBloc()),
   ];
 }

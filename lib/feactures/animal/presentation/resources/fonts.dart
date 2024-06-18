@@ -30,16 +30,6 @@ TextStyle textAdoptaAppDog(bool isDarkMode) {
   );
 }
 
-// //buttom_welcome
-// TextStyle buttomFontAppDog(bool isDarkMode) {
-//   return GoogleFonts.workSans(
-//     fontSize: 19,
-//     color: const Color(0xff45515f),
-//     fontWeight: FontWeight.w500,
-//     letterSpacing: -1,
-//   );
-// }
-
 //btn_continuar
 TextStyle btnWelcomeFontAppDog(bool isDarkMode) {
   return GoogleFonts.workSans(
@@ -47,5 +37,24 @@ TextStyle btnWelcomeFontAppDog(bool isDarkMode) {
     color: isDarkMode ? Colors.black : Colors.white,
     fontWeight: FontWeight.w600,
     letterSpacing: 0,
+  );
+}
+
+//Fuente de AppBarHome
+TextStyle iconFontNaviagtionON() {
+  return GoogleFonts.workSans(
+    fontSize: 15,
+    color: const Color(0xffff3063),
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.5,
+  );
+}
+
+TextStyle iconFontNaviagtionOFF() {
+  return GoogleFonts.workSans(
+    fontSize: 14,
+    color: const Color(0xffafc5c4),
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.5,
   );
 }

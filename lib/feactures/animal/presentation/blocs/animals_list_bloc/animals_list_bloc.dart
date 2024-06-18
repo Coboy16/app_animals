@@ -48,6 +48,7 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
               case 'dogs':
                 emit(state.copyWith(listPageDogs: listFirtAnimal));
                 add(UpdateListPageDogEvent(event.page + 1));
+                emit(state.copyWith(navationHome: true));
                 emit(state.copyWith(isLoadingList: false));
                 break;
               case 'cats':

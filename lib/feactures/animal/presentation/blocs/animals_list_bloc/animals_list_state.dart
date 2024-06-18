@@ -4,6 +4,7 @@ class AnimalsListState extends Equatable {
   final bool isLoadingList;
   final bool isLoadingAnimal;
   final bool isNoDate;
+  final bool navationHome;
   final Animal? animalInfo;
   final Failure? failure;
   final int numerPageDog;
@@ -21,6 +22,7 @@ class AnimalsListState extends Equatable {
     this.isLoadingAnimal = false,
     this.isLoadingList = false,
     this.isNoDate = false,
+    this.navationHome = false,
     this.animalInfo,
     this.failure,
     this.numerPageDog = 0,
@@ -39,6 +41,7 @@ class AnimalsListState extends Equatable {
     bool? isLoadingAnimal,
     bool? isLoadingList,
     bool? isNoDate,
+    bool? navationHome,
     Animal? animalInfo,
     Failure? failure,
     int? numerPageDog,
@@ -56,6 +59,7 @@ class AnimalsListState extends Equatable {
         isLoadingList: isLoadingList ?? this.isLoadingList,
         isLoadingAnimal: isLoadingAnimal ?? this.isLoadingAnimal,
         isNoDate: isNoDate ?? this.isNoDate,
+        navationHome: navationHome ?? this.navationHome,
         animalInfo: animalInfo ?? this.animalInfo,
         failure: failure ?? this.failure,
         numerPageDog: numerPageDog ?? this.numerPageDog,
@@ -75,6 +79,7 @@ class AnimalsListState extends Equatable {
         isLoadingList,
         isLoadingAnimal,
         isNoDate,
+        navationHome,
         animalInfo,
         failure,
         numerPageDog,
