@@ -36,7 +36,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
               width: size.width,
               height: size.height * 0.085,
               decoration: BoxDecoration(
-                color: colorAppBar(stateTheme.isDarkMode),
+                color: colorBottomNavegation(stateTheme.isDarkMode),
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(18)),
                 boxShadow: [
@@ -83,7 +83,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
   Widget _iconNaviagate(Size size, int index, bool isDarkMode) {
     return Container(
       padding: const EdgeInsets.only(top: 9),
-      color: colorAppBar(isDarkMode),
+      color: colorBottomNavegation(isDarkMode),
       child: Column(
         children: [
           Icon(

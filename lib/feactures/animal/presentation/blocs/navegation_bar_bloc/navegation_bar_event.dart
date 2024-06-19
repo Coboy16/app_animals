@@ -11,3 +11,8 @@ class UpdateIndexNavegationEvent extends NavegationBarEvent {
   final int index;
   const UpdateIndexNavegationEvent(this.index);
 }
+
+class UpdateIndexCategoryNavegationEvent extends NavegationBarEvent {
+  final int indexCategory;
+  const UpdateIndexCategoryNavegationEvent(this.indexCategory);
+}
