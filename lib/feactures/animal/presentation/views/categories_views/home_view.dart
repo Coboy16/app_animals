@@ -1,10 +1,10 @@
-import 'package:dog_app/feactures/animal/presentation/blocs/blocs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/feactures/animal/presentation/resources/resources.dart';
 import '/shared/presentation/blocs/theme_bloc/theme_bloc.dart';
 import '/feactures/animal/presentation/widgets/widgets.dart';
+import '/feactures/animal/presentation/blocs/blocs.dart';
 import '/feactures/animal/presentation/views/views.dart';
 
 class HomeView extends StatelessWidget {
@@ -25,9 +25,7 @@ class HomeView extends StatelessWidget {
             ),
             const NavegationBarHomeViewWidget(),
             SizedBox(height: size.height * 0.02),
-            SizedBox(
-              height: size.height * 0.59,
-              width: size.width,
+            Expanded(
               child: BlocBuilder<NavegationBarBloc, NavegationBarState>(
                 builder: (context, state) =>
                     _getViewAppBarCategory(state.indexCategory),

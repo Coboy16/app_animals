@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,9 +21,7 @@ class HomeAnimalScreen extends StatelessWidget {
           appBar: _appBar(size, state.isDarkMode),
           backgroundColor: colorBase(state.isDarkMode),
           bottomNavigationBar: const NavigationBarWidget(),
-          body: SizedBox(
-            width: size.width,
-            height: size.height * 0.8,
+          body: Expanded(
             child: BlocBuilder<NavegationBarBloc, NavegationBarState>(
               builder: (context, state) => _getViewNavegation(state.index),
             ),
@@ -34,24 +33,28 @@ class HomeAnimalScreen extends StatelessWidget {
 
   _appBar(Size size, bool darkMode) {
     return AppBar(
+      elevation: 0,
+      surfaceTintColor: colorBase(darkMode),
       backgroundColor: colorBase(darkMode),
-      leading: Padding(
-        padding: const EdgeInsets.only(left: 15, top: 18),
-        child: FaIcon(
-          FontAwesomeIcons.bars,
-          size: 20,
-          color: colorBase(!darkMode),
+      leading: FadeInLeft(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 15, top: 18),
+          child: FaIcon(
+            FontAwesomeIcons.bars,
+            size: 20,
+            color: colorBase(!darkMode),
+          ),
         ),
       ),
-      title: Text('Hello Marco', style: appBarTitleName(darkMode)),
+      title: FadeInLeft(
+          child: Text('Hello Marco', style: appBarTitleName(darkMode))),
       titleSpacing: -10,
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 15, top: 10),
-          child: Badge(
-            backgroundColor: const Color(0xffff3063),
+          child: FadeInRight(
             child: FaIcon(
-              FontAwesomeIcons.solidBell,
+              FontAwesomeIcons.magnifyingGlass,
               size: size.height * 0.026,
               color: colorBell(!darkMode),
             ),

@@ -83,7 +83,7 @@ TextStyle appBarTitleName(bool isDarkMode) {
 TextStyle nameCategoryHomeView(bool isDarkMode) {
   return GoogleFonts.workSans(
     fontSize: 15,
-    color: isDarkMode? Colors.white :const Color(0xff45515f),
+    color: isDarkMode ? Colors.white : const Color(0xff45515f),
     fontWeight: FontWeight.w400,
     letterSpacing: -0.7,
   );
@@ -92,8 +92,28 @@ TextStyle nameCategoryHomeView(bool isDarkMode) {
 TextStyle nameCategoryHomeView2(bool isDarkMode) {
   return GoogleFonts.workSans(
     fontSize: 15,
-    color: isDarkMode? const Color(0xff45515f) : Colors.white,
+    color: isDarkMode ? const Color(0xff45515f) : Colors.white,
     fontWeight: FontWeight.w400,
     letterSpacing: -0.7,
+  );
+}
+
+//dog view
+TextStyle nameAnimalContainerWidget() {
+  return GoogleFonts.quicksand(
+    fontSize: 17.5,
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 0.2,
+  );
+}
+
+//widget container animal
+TextStyle razaAnimalContainerWidget() {
+  return GoogleFonts.workSans(
+    fontSize: 14.5,
+    color: Colors.white,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.5,
   );
 }

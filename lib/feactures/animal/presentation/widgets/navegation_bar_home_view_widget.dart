@@ -79,9 +79,15 @@ class _NavegationBarHomeViewWidgetState
               width: index == categoryIndex
                   ? size.width * 0.14
                   : size.width * 0.135),
-          Text(
-            listOfText[index],
-            style: nameCategoryHomeView(isDarkMode),
+          SizedBox(
+            width: size.width * 0.13,
+            child: Center(
+              child: Text(
+                listOfText[index],
+                style: nameCategoryHomeView(isDarkMode),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ),
         ],
       ),

@@ -34,19 +34,21 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
           builder: (context, stateTheme) {
             return Container(
               width: size.width,
-              height: size.height * 0.085,
+              height: size.height * 0.088,
               decoration: BoxDecoration(
                 color: colorBottomNavegation(stateTheme.isDarkMode),
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(18)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    spreadRadius: 4,
-                    blurRadius: 8,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
+                boxShadow: stateTheme.isDarkMode
+                    ? []
+                    : [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          spreadRadius: 4,
+                          blurRadius: 8,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
               ),
               child: Center(
                 child: SizedBox(
