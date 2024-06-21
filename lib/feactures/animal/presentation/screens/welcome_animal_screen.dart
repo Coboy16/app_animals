@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,24 +17,28 @@ class WelcomeAnimalScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           backgroundColor: colorBase(state.isDarkMode),
-          body: Column(
-            children: [
-              SizedBox(height: size.height * 0.07),
-              Text('Bienvenido', style: welcomeFontAppDog(state.isDarkMode)),
-              SizedBox(height: size.height * 0.01),
-              SizedBox(
-                width: size.width * 0.7,
-                child: Text(
-                  'Adopta una mascota y haz tu día a día mucho más feliz',
-                  style: bodyFontAppDog(state.isDarkMode),
-                  textAlign: TextAlign.center,
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: size.height * 0.07),
+                AutoSizeText('Bienvenido',
+                    style: welcomeFontAppDog(state.isDarkMode)),
+                SizedBox(height: size.height * 0.01),
+                SizedBox(
+                  width: size.width * 0.7,
+                  child: AutoSizeText(
+                    'Adopta una mascota y haz tu día a día mucho más feliz',
+                    style: bodyFontAppDog(state.isDarkMode),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-              SizedBox(height: size.height * 0.04),
-              _imageContainer(size, state.isDarkMode),
-              const Spacer(),
-              _buttomText(context, size, state.isDarkMode),
-            ],
+                SizedBox(height: size.height * 0.04),
+                _imageContainer(size, state.isDarkMode),
+                SizedBox(height: size.height * 0.07),
+                _buttomText(context, size, state.isDarkMode),
+                SizedBox(height: size.height * 0.02),
+              ],
+            ),
           ),
         );
       },
@@ -85,7 +90,7 @@ class WelcomeAnimalScreen extends StatelessWidget {
       children: [
         SizedBox(
           width: size.width * 0.7,
-          child: Text(
+          child: AutoSizeText(
             '¿Quieres adoptar una mascota?',
             style: textAdoptaAppDog(isDarkMode),
             textAlign: TextAlign.center,

@@ -20,8 +20,12 @@ class HomeAnimalScreen extends StatelessWidget {
           appBar: _appBar(size, state.isDarkMode),
           backgroundColor: colorBase(state.isDarkMode),
           bottomNavigationBar: const NavigationBarWidget(),
-          body: BlocBuilder<NavegationBarBloc, NavegationBarState>(
-            builder: (context, state) => _getViewNavegation(state.index),
+          body: SizedBox(
+            width: size.width,
+            height: size.height * 0.8,
+            child: BlocBuilder<NavegationBarBloc, NavegationBarState>(
+              builder: (context, state) => _getViewNavegation(state.index),
+            ),
           ),
         );
       },

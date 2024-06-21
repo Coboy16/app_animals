@@ -26,10 +26,11 @@ class HomeView extends StatelessWidget {
             const NavegationBarHomeViewWidget(),
             SizedBox(height: size.height * 0.02),
             SizedBox(
-              height: size.height * 0.6,
+              height: size.height * 0.59,
               width: size.width,
               child: BlocBuilder<NavegationBarBloc, NavegationBarState>(
-                builder: (context, state) => _getViewAppBarCategory(state.indexCategory),
+                builder: (context, state) =>
+                    _getViewAppBarCategory(state.indexCategory),
               ),
             ),
           ],

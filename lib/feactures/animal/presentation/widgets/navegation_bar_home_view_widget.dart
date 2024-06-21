@@ -45,10 +45,12 @@ class _NavegationBarHomeViewWidgetState
                     child: GestureDetector(
                       onTap: () {
                         setState(() => categoryIndex = index);
-                        _navegationBarBloc.add(UpdateIndexCategoryNavegationEvent(categoryIndex));
+                        _navegationBarBloc.add(
+                            UpdateIndexCategoryNavegationEvent(categoryIndex));
                       },
                       child: Container(
-                        child: _iconCategory(size, index, stateTheme.isDarkMode),
+                        child:
+                            _iconCategory(size, index, stateTheme.isDarkMode),
                       ),
                     ),
                   );
