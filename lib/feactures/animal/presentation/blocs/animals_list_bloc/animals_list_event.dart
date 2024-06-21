@@ -22,6 +22,11 @@ class UpdateIsNotDateEvent extends AnimalsListEvent {
   const UpdateIsNotDateEvent(this.isNotData);
 }
 
+class ReadyMovePageEvent extends AnimalsListEvent {
+  final bool isReady;
+  const ReadyMovePageEvent(this.isReady);
+}
+
 class GetInfoAnimalIdEvent extends AnimalsListEvent {
   final String id;
   const GetInfoAnimalIdEvent(this.id);

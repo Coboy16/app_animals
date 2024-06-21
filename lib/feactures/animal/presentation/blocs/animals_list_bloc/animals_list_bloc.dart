@@ -48,7 +48,7 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
               case 'dogs':
                 emit(state.copyWith(listPageDogs: listFirtAnimal));
                 add(UpdateListPageDogEvent(event.page + 1));
-                emit(state.copyWith(navationHome: true));
+                // emit(state.copyWith(navationHome: true));
                 emit(state.copyWith(isLoadingList: false));
                 break;
               case 'cats':
@@ -143,6 +143,9 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
     //Cambia el estado si no trae data de la lista
     on<UpdateIsNotDateEvent>(
         (event, emit) => emit(state.copyWith(isNoDate: event.isNotData)));
+
+    on<ReadyMovePageEvent>(
+        (event, emit) => emit(state.copyWith(navationHome: event.isReady)));
 
     //Actualiza las paginas del tipo de animal
     on<UpdateListPageDogEvent>(
