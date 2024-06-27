@@ -1,5 +1,3 @@
-import 'package:dog_app/feactures/animal/domain/entities/entities.dart';
-import 'package:dog_app/feactures/animal/presentation/resources/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,6 +6,7 @@ import 'package:animate_do/animate_do.dart';
 
 import '/feactures/animal/presentation/resources/resources.dart';
 import '/feactures/animal/presentation/widgets/widgets.dart';
+import '/feactures/animal/domain/entities/entities.dart';
 import '/feactures/animal/presentation/blocs/blocs.dart';
 import '/shared/presentation/blocs/blocs.dart';
 
@@ -25,22 +24,11 @@ class InfoAnimalScreen extends StatelessWidget {
           body: BlocBuilder<AnimalsListBloc, AnimalsListState>(
             builder: (context, state) {
               return state.isLoadingAnimal
-                  ? const Center(child: CircularProgressIndicator())
+                  ?  LoadingInfoDeatilAnimalWidget(isDarkMode: stateTheme.isDarkMode)
                   : Column(
                       children: [
-                        Container(
-                          color: Colors.amber,
-                          width: size.width,
-                          height: size.height * 0.32,
-                          // color: Colors.red,
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            width: size.width,
-                            child: _buttomPartAnimalInfo(
-                                state.animalInfo!, size, stateTheme.isDarkMode),
-                          ),
-                        ),
+                        CarouselImageDetailWidget(listPhotos: state.animalInfo!.photos),
+                        Expanded(child: _buttomPartAnimalInfo(state.animalInfo!, size, stateTheme.isDarkMode)),
                       ],
                     );
             },
@@ -58,15 +46,9 @@ class InfoAnimalScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          InfoDetailAnimalWidget(
-            detailAnimal: animalInfo,
-            isDarkMode: isDarkMode,
-          ),
+          InfoDetailAnimalWidget(detailAnimal: animalInfo, isDarkMode: isDarkMode ),
           SizedBox(height: size.height * 0.02),
-          InfoDetailButttonsWidget(
-            name: animalInfo.name,
-            isDarkMode: isDarkMode,
-          ),
+          InfoDetailButttonsWidget(name: animalInfo.name, isDarkMode: isDarkMode ),
           SizedBox(height: size.height * 0.01),
         ],
       ),
@@ -76,8 +58,8 @@ class InfoAnimalScreen extends StatelessWidget {
   _appBar(BuildContext context, Size size, bool isDarkMode) {
     return AppBar(
       elevation: 0,
-      surfaceTintColor: colorBase(isDarkMode),
-      backgroundColor: colorBase(isDarkMode),
+      surfaceTintColor: colorTopDetailAnimal(isDarkMode),
+      backgroundColor: colorTopDetailAnimal(isDarkMode),
       leading: GestureDetector(
         onTap: () => Navigator.of(context).pop(),
         child: FadeInLeft(child: const Icon(Icons.arrow_back_ios)),

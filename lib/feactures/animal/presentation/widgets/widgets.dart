@@ -9,3 +9,5 @@ export './center_widgets_view_animal.dart';
 export './circular_progrees_bottom_widget.dart';
 export './info_detail_animal_widget.dart';
 export './info_detail_butttons_widget.dart';
+export './carousel_image_detail_widget.dart';
+export './loading_info_deatil_animal_widget.dart';

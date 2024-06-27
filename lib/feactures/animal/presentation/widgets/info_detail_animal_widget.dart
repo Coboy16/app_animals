@@ -57,14 +57,12 @@ class InfoDetailAnimalWidget extends StatelessWidget {
         SizedBox(height: size.height * 0.025),
         Padding(
           padding: const EdgeInsets.only(left: 20),
-          child: Text(detailAnimal.name,
-              style: titleNamePetsDetailPets(isDarkMode)),
+          child: Text(detailAnimal.name, style: titleNamePetsDetailPets(isDarkMode)),
         ),
         SizedBox(height: size.height * 0.005),
         Padding(
           padding: const EdgeInsets.only(left: 20),
-          child:
-              Text(detailAnimal.race, style: titlerazaDetailPets(isDarkMode)),
+          child: Text(detailAnimal.race, style: titlerazaDetailPets(isDarkMode)),
         ),
         SizedBox(height: size.height * 0.015),
       ],
@@ -75,12 +73,9 @@ class InfoDetailAnimalWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _containerInfo(
-            size, colorSexo(isDarkMode), detailAnimal.sexo, 'Sexo', isDarkMode),
-        _containerInfo(size, colorEdad(isDarkMode), '${detailAnimal.age} Años',
-            'Edad', isDarkMode),
-        _containerInfo(size, colorPeso(isDarkMode),
-            '${detailAnimal.weight} Kilos', 'Peso', isDarkMode),
+        _containerInfo(size, colorSexo(isDarkMode), detailAnimal.sexo, 'Sexo', isDarkMode),
+        _containerInfo(size, colorEdad(isDarkMode), '${detailAnimal.age} Años','Edad', isDarkMode),
+        _containerInfo(size, colorPeso(isDarkMode),'${detailAnimal.weight} Kilos', 'Peso', isDarkMode),
       ],
     );
   }
@@ -112,8 +107,7 @@ class InfoDetailAnimalWidget extends StatelessWidget {
   Widget _barLine(Size size, Color color) {
     return Container(
       width: size.width * 0.018,
-      decoration:
-          BoxDecoration(color: color, borderRadius: BorderRadius.circular(14)),
+      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(14)),
     );
   }
 
@@ -124,14 +118,12 @@ class InfoDetailAnimalWidget extends StatelessWidget {
       child: Container(
         width: vacunado ? size.width * 0.35 : size.width * 0.41,
         height: size.height * 0.038,
-        decoration: BoxDecoration(
-            color: vacunado ? colorVacunado(isDarkMode) : Colors.red,
+        decoration: BoxDecoration( color: vacunado ? colorVacunado(isDarkMode) : Colors.red,
             borderRadius: BorderRadius.circular(20)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(vacunado ? 'Vacuando' : 'No Vacuando',
-                style: titleVacunaDetailPets(vacunado)),
+            Text(vacunado ? 'Vacuando' : 'No Vacuando', style: titleVacunaDetailPets(vacunado)),
             SizedBox(width: size.width * 0.02),
             Icon(vacunado ? Icons.check_rounded : Icons.cancel_outlined,
                 size: size.height * 0.025,
@@ -150,8 +142,7 @@ class InfoDetailAnimalWidget extends StatelessWidget {
         Container(
           width: size.height * 0.045,
           height: size.height * 0.045,
-          decoration: BoxDecoration(
-              color: colorLocationFondo(isDarkMode), shape: BoxShape.circle),
+          decoration: BoxDecoration(color: colorLocationFondo(isDarkMode), shape: BoxShape.circle),
           child: Icon(
             Icons.location_on_sharp,
             size: size.height * 0.03,
@@ -171,8 +162,7 @@ class InfoDetailAnimalWidget extends StatelessWidget {
         SizedBox(height: size.height * 0.018),
         Padding(
           padding: const EdgeInsets.only(left: 20),
-          child: Text('Sobre ${detailAnimal.name}',
-              style: titleSobrePetsDetailPets(isDarkMode)),
+          child: Text('Sobre ${detailAnimal.name}', style: titleSobrePetsDetailPets(isDarkMode)),
         ),
         SizedBox(height: size.height * 0.005),
         Padding(

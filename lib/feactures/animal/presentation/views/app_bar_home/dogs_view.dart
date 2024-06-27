@@ -59,7 +59,10 @@ class _DogsViewState extends State<DogsView> {
                     _animalsListBloc.add(GetInfoAnimalIdEvent(columDogs[0].id));
                     _navegation();
                   },
-                  onTapLeft: () => _navegation(),
+                  onTapLeft: () {
+                    _animalsListBloc.add(GetInfoAnimalIdEvent(columDogs.length > 1 ? columDogs[1].id : ''));
+                    _navegation();
+                  },
                 );
               },
             ),
@@ -73,8 +76,7 @@ class _DogsViewState extends State<DogsView> {
   void _navegation() => Navigator.push(
         context,
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) =>
-              const InfoAnimalScreen(),
+          pageBuilder: (context, animation, secondaryAnimation) => const InfoAnimalScreen(),
           transitionDuration: const Duration(seconds: 0),
         ),
       );
