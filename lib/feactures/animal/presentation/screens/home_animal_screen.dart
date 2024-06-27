@@ -47,8 +47,7 @@ class HomeAnimalScreen extends StatelessWidget {
           ),
         ),
       ),
-      title: FadeInLeft(
-          child: Text('Hello Marco', style: appBarTitleName(darkMode))),
+      title: FadeInLeft(child: Text('Hello Marco', style: appBarTitleName(darkMode))),
       titleSpacing: -10,
       actions: [
         Padding(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '/feactures/animal/presentation/screens/screens.dart';
 import '/feactures/animal/presentation/widgets/widgets.dart';
 import '/feactures/animal/presentation/blocs/blocs.dart';
-import '/feactures/animal/domain/entities/entities.dart';
 
 class DogsView extends StatefulWidget {
   const DogsView({super.key});
@@ -37,8 +37,6 @@ class _DogsViewState extends State<DogsView> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return BlocBuilder<AnimalsListBloc, AnimalsListState>(
       builder: (context, state) {
         return Stack(
@@ -54,64 +52,30 @@ class _DogsViewState extends State<DogsView> {
                 final columDogs = listDogs.sublist(startIndex,
                     endIndex > listDogs.length ? listDogs.length : endIndex);
 
-                return _rowTwoAnimals(columDogs[0],
-                    columDogs.length > 1 ? columDogs[1] : null, size);
+                return CenterWidgetsViewAnimal(
+                  animalRight: columDogs[0],
+                  animalLeft: columDogs.length > 1 ? columDogs[1] : null,
+                  onTapRight: () {
+                    _animalsListBloc.add(GetInfoAnimalIdEvent(columDogs[0].id));
+                    _navegation();
+                  },
+                  onTapLeft: () => _navegation(),
+                );
               },
             ),
-            if (state.isLoadingList)
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: SizedBox(
-                    width: size.height * 0.04,
-                    height: size.height * 0.04,
-                    child: const CircularProgressIndicator(
-                      color: Colors.white,
-                      backgroundColor: Color(0xffff3063),
-                    ),
-                  ),
-                ),
-              ),
+            if (state.isLoadingList) const CircularProgreesBottomWidget()
           ],
         );
       },
     );
   }
 
-  Widget _rowTwoAnimals(Animal r_, Animal? l_, Size size) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        SizedBox(width: size.width * 0.01),
-        //Todo: -> Animal izquierda
-        Padding(
-          padding: const EdgeInsets.only(bottom: 23),
-          child: GestureDetector(
-            onTap: () {},
-            child: _animalTem(r_, size),
-          ),
+  void _navegation() => Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const InfoAnimalScreen(),
+          transitionDuration: const Duration(seconds: 0),
         ),
-        SizedBox(width: size.width * 0.01),
-        //Todo: -> Animal derecha
-        Padding(
-          padding: const EdgeInsets.only(top: 23),
-          child: GestureDetector(
-            onTap: () {},
-            child: _animalTem(l_!, size),
-          ),
-        ),
-        SizedBox(width: size.width * 0.01),
-      ],
-    );
-  }
-
-  Widget _animalTem(Animal animal, Size size) {
-    return AnimalCardWidget(
-      urlImage: animal.profilePhoto,
-      name: animal.name,
-      race: animal.race,
-      id: animal.id,
-    );
-  }
+      );
 }

@@ -61,6 +61,7 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
               case 'bunnys':
                 emit(state.copyWith(listPageBunnys: listFirtAnimal));
                 add(UpdateListPageBunnyEvent(event.page + 1));
+                emit(state.copyWith(initFirtList: false));
                 emit(state.copyWith(isLoadingList: false));
                 break;
               case 'birds':
@@ -110,6 +111,7 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
                 } else {
                   final List<Animal> updatedList = List.from(state.listPageBunnys)..addAll(listAnimal);
                   emit(state.copyWith(listPageBunnys: updatedList));
+                  add(UpdateListPageBunnyEvent(event.page));
                   emit(state.copyWith(isLoadingList: false));
                 }
                 break;

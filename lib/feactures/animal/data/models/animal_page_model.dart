@@ -8,8 +8,7 @@ class AnimalPageModel {
   factory AnimalPageModel.fromJson(Map<String, dynamic> json) {
     Map<String, List<AnimalModel>> animalMap = {};
     json.forEach((key, value) {
-      animalMap[key] =
-          List<AnimalModel>.from(value.map((x) => AnimalModel.fromJson(x)));
+      animalMap[key] = List<AnimalModel>.from(value.map((x) => AnimalModel.fromJson(x)));
     });
     return AnimalPageModel(animalsListPage: animalMap);
   }

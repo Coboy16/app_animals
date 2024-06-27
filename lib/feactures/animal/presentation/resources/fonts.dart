@@ -117,3 +117,87 @@ TextStyle razaAnimalContainerWidget() {
     letterSpacing: -0.5,
   );
 }
+
+//Detail Pets
+
+//Favortie pets
+TextStyle titleNamePetsDetailPets(bool isDarkMode) {
+  return GoogleFonts.poppins(
+    color: isDarkMode ? Colors.white : Colors.black.withOpacity(0.7),
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.1,
+  );
+}
+
+TextStyle titlerazaDetailPets(bool isDarkMode) {
+  return GoogleFonts.workSans(
+    fontSize: 17,
+    color: isDarkMode ? Colors.white70 : Colors.grey,
+    fontWeight: FontWeight.w500,
+    letterSpacing: -0.5,
+  );
+}
+
+TextStyle titleSexoDetailPets(bool isDarkMode) {
+  return GoogleFonts.workSans(
+    fontSize: 17,
+    color: isDarkMode ? Colors.white70 : Colors.grey,
+    fontWeight: FontWeight.w500,
+    letterSpacing: -0.5,
+  );
+}
+
+TextStyle titleGeneroDetailPets(bool isDarkMode) {
+  return GoogleFonts.poppins(
+    color: isDarkMode ? Colors.white : Colors.black.withOpacity(0.7),
+    fontSize: 19,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.6,
+  );
+}
+
+TextStyle titleVacunaDetailPets(bool vacunado) {
+  return GoogleFonts.workSans(
+    fontSize: 17,
+    color: vacunado ? Colors.black54 : Colors.white,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0,
+  );
+}
+
+TextStyle titleLocationDetailPets(bool isDarkMode) {
+  return GoogleFonts.workSans(
+    fontSize: 18,
+    color: isDarkMode ? Colors.white : Colors.grey.shade700,
+    fontWeight: FontWeight.w500,
+    letterSpacing: -0.5,
+  );
+}
+
+TextStyle titleSobrePetsDetailPets(bool isDarkMode) {
+  return GoogleFonts.poppins(
+    color: isDarkMode ? Colors.white : Colors.black.withOpacity(0.7),
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.1,
+  );
+}
+
+TextStyle subTitleSobreDetailPets(bool isDarkMode) {
+  return GoogleFonts.workSans(
+    fontSize: 16,
+    color: isDarkMode ? Colors.white70 : Colors.grey,
+    fontWeight: FontWeight.w500,
+    letterSpacing: -0.5,
+  );
+}
+
+TextStyle titleBtnAdoptDetailPets() {
+  return GoogleFonts.poppins(
+    color: Colors.white,
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.1,
+  );
+}
