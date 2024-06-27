@@ -1,5 +1,6 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -21,7 +22,7 @@ class HomeAnimalScreen extends StatelessWidget {
           appBar: _appBar(size, state.isDarkMode),
           backgroundColor: colorBase(state.isDarkMode),
           bottomNavigationBar: const NavigationBarWidget(),
-          body: Expanded(
+          body: SizedBox.expand(
             child: BlocBuilder<NavegationBarBloc, NavegationBarState>(
               builder: (context, state) => _getViewNavegation(state.index),
             ),

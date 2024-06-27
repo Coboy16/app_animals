@@ -39,6 +39,7 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
 
       // Verifica si es la primera página para cargar las dos primeras páginas
       if (event.page == 1) {
+        emit(state.copyWith(initFirtList: true));
         final resptListFirt = await _firstListAnimals(event.page, event.type);
 
         resptListFirt.fold(
@@ -48,12 +49,13 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
               case 'dogs':
                 emit(state.copyWith(listPageDogs: listFirtAnimal));
                 add(UpdateListPageDogEvent(event.page + 1));
-                // emit(state.copyWith(navationHome: true));
+                add(const ReadyMovePageEvent(true));
                 emit(state.copyWith(isLoadingList: false));
                 break;
               case 'cats':
                 emit(state.copyWith(listPageCats: listFirtAnimal));
                 add(UpdateListPageCatsEvent(event.page + 1));
+                emit(state.copyWith(initFirtList: false));
                 emit(state.copyWith(isLoadingList: false));
                 break;
               case 'bunnys':
@@ -76,8 +78,7 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
         );
       } else {
         // Maneja las peticiones subsecuentes y la actualización de las listas
-        final respList =
-            await _getListAnimalsPageUseCase(event.type, event.page);
+        final respList = await _getListAnimalsPageUseCase(event.type, event.page);
 
         await respList.fold(
           (failure) async => emit(state.copyWith(failure: failure)),
@@ -87,8 +88,7 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
                 if (listAnimal.isEmpty) {
                   notIsDateList();
                 } else {
-                  final List<Animal> updatedList = List.from(state.listPageDogs)
-                    ..addAll(listAnimal);
+                  final List<Animal> updatedList = List.from(state.listPageDogs)..addAll(listAnimal);
                   emit(state.copyWith(listPageDogs: updatedList));
                   add(UpdateListPageDogEvent(event.page));
                   emit(state.copyWith(isLoadingList: false));
@@ -98,9 +98,9 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
                 if (listAnimal.isEmpty) {
                   notIsDateList();
                 } else {
-                  final List<Animal> updatedList = List.from(state.listPageCats)
-                    ..addAll(listAnimal);
+                  final List<Animal> updatedList = List.from(state.listPageCats)..addAll(listAnimal);
                   emit(state.copyWith(listPageCats: updatedList));
+                  add(UpdateListPageCatsEvent(event.page));
                   emit(state.copyWith(isLoadingList: false));
                 }
                 break;
@@ -108,8 +108,7 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
                 if (listAnimal.isEmpty) {
                   notIsDateList();
                 } else {
-                  final List<Animal> updatedList =
-                      List.from(state.listPageBunnys)..addAll(listAnimal);
+                  final List<Animal> updatedList = List.from(state.listPageBunnys)..addAll(listAnimal);
                   emit(state.copyWith(listPageBunnys: updatedList));
                   emit(state.copyWith(isLoadingList: false));
                 }
@@ -118,8 +117,7 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
                 if (listAnimal.isEmpty) {
                   notIsDateList();
                 } else {
-                  final List<Animal> updatedList =
-                      List.from(state.listPageBirds)..addAll(listAnimal);
+                  final List<Animal> updatedList = List.from(state.listPageBirds)..addAll(listAnimal);
                   emit(state.copyWith(listPageBirds: updatedList));
                   emit(state.copyWith(isLoadingList: false));
                 }
@@ -128,8 +126,7 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
                 if (listAnimal.isEmpty) {
                   notIsDateList();
                 } else {
-                  final List<Animal> updatedList =
-                      List.from(state.listPageMouses)..addAll(listAnimal);
+                  final List<Animal> updatedList = List.from(state.listPageMouses)..addAll(listAnimal);
                   emit(state.copyWith(listPageMouses: updatedList));
                   emit(state.copyWith(isLoadingList: false));
                 }
@@ -141,27 +138,25 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
     });
 
     //Cambia el estado si no trae data de la lista
-    on<UpdateIsNotDateEvent>(
-        (event, emit) => emit(state.copyWith(isNoDate: event.isNotData)));
+    on<UpdateIsNotDateEvent>((event, emit) => emit(state.copyWith(isNoDate: event.isNotData)));
+    
+    //Cambia de estado para poder pasar al home
+    on<ReadyMovePageEvent>((event, emit) => emit(state.copyWith(navationHome: event.isReady)));
 
-    on<ReadyMovePageEvent>(
-        (event, emit) => emit(state.copyWith(navationHome: event.isReady)));
+    //Loading inicial al cargar la lista
+    on<InitFirtListEvent>((event, emit) => emit(state.copyWith(initFirtList: event.initList)));
+
 
     //Actualiza las paginas del tipo de animal
-    on<UpdateListPageDogEvent>(
-        (event, emit) => emit(state.copyWith(numerPageDog: event.updatePage)));
-    on<UpdateListPageCatsEvent>(
-        (event, emit) => emit(state.copyWith(numerPageDog: event.updatePage)));
-    on<UpdateListPageBunnyEvent>(
-        (event, emit) => emit(state.copyWith(numerPageDog: event.updatePage)));
-    on<UpdateListPageBirdsEvent>(
-        (event, emit) => emit(state.copyWith(numerPageDog: event.updatePage)));
-    on<UpdateListPageMousesEvent>(
-        (event, emit) => emit(state.copyWith(numerPageDog: event.updatePage)));
+    on<UpdateListPageDogEvent>((event, emit) => emit(state.copyWith(numerPageDog: event.updatePage)));
+    on<UpdateListPageCatsEvent>((event, emit) => emit(state.copyWith(numerPageCats: event.updatePage)));
+    on<UpdateListPageBunnyEvent>((event, emit) => emit(state.copyWith(numerPageBunny: event.updatePage)));
+    on<UpdateListPageBirdsEvent>((event, emit) => emit(state.copyWith(numerPageBirds: event.updatePage)));
+    on<UpdateListPageMousesEvent>((event, emit) => emit(state.copyWith(numerPageMouses: event.updatePage)));
   }
 
-  Future<Either<Failure, List<Animal>>> _firstListAnimals(
-      int pageAnimal, String type) async {
+  //Trae los listado de data es decir 8 elementos en la lista
+  Future<Either<Failure, List<Animal>>> _firstListAnimals(int pageAnimal, String type) async {
     List<Animal> listCombined = [];
 
     try {
@@ -173,8 +168,7 @@ class AnimalsListBloc extends Bloc<AnimalsListEvent, AnimalsListState> {
           listCombined = listAnimal;
 
           // Realiza la segunda petición
-          final respListTwo =
-              await _getListAnimalsPageUseCase(type, pageAnimal + 1);
+          final respListTwo = await _getListAnimalsPageUseCase(type, pageAnimal + 1);
 
           return respListTwo.fold(
             (failure) => Left(failure),

@@ -27,6 +27,11 @@ class ReadyMovePageEvent extends AnimalsListEvent {
   const ReadyMovePageEvent(this.isReady);
 }
 
+class InitFirtListEvent extends AnimalsListEvent {
+  final bool initList;
+  const InitFirtListEvent(this.initList);
+}
+
 class GetInfoAnimalIdEvent extends AnimalsListEvent {
   final String id;
   const GetInfoAnimalIdEvent(this.id);

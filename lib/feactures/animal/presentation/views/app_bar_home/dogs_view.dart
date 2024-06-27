@@ -1,7 +1,7 @@
-import 'package:dog_app/feactures/animal/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '/feactures/animal/presentation/widgets/widgets.dart';
 import '/feactures/animal/presentation/blocs/blocs.dart';
 import '/feactures/animal/domain/entities/entities.dart';
 
@@ -14,11 +14,25 @@ class DogsView extends StatefulWidget {
 
 class _DogsViewState extends State<DogsView> {
   late AnimalsListBloc _animalsListBloc;
+  late ScrollController _scrollController;
 
   @override
   void initState() {
     _animalsListBloc = BlocProvider.of<AnimalsListBloc>(context);
+    _scrollController = ScrollController();
     super.initState();
+    scrollControllerDogView();
+  }
+
+  void scrollControllerDogView() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.atEdge) {
+        if (_scrollController.position.pixels != 0) {
+          _animalsListBloc.add(GetListAnimalsTypeAndPageEvent(
+              type: 'dogs', page: (_animalsListBloc.state.numerPageDog + 1)));
+        }
+      }
+    });
   }
 
   @override
@@ -27,18 +41,39 @@ class _DogsViewState extends State<DogsView> {
 
     return BlocBuilder<AnimalsListBloc, AnimalsListState>(
       builder: (context, state) {
-        return ListView.builder(
-          itemCount: state.listPageDogs.length ~/ 2,
-          itemBuilder: (context, index) {
-            final listDogs = state.listPageDogs;
-            final startIndex = index * 2;
-            final endIndex = (index + 1) * 2;
-            final columDogs = listDogs.sublist(startIndex,
-                endIndex > listDogs.length ? listDogs.length : endIndex);
+        return Stack(
+          children: [
+            ListView.builder(
+              physics: const ClampingScrollPhysics(),
+              itemCount: state.listPageDogs.length ~/ 2,
+              controller: _scrollController,
+              itemBuilder: (context, index) {
+                final listDogs = state.listPageDogs;
+                final startIndex = index * 2;
+                final endIndex = (index + 1) * 2;
+                final columDogs = listDogs.sublist(startIndex,
+                    endIndex > listDogs.length ? listDogs.length : endIndex);
 
-            return _rowTwoAnimals(
-                columDogs[0], columDogs.length > 1 ? columDogs[1] : null, size);
-          },
+                return _rowTwoAnimals(columDogs[0],
+                    columDogs.length > 1 ? columDogs[1] : null, size);
+              },
+            ),
+            if (state.isLoadingList)
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: SizedBox(
+                    width: size.height * 0.04,
+                    height: size.height * 0.04,
+                    child: const CircularProgressIndicator(
+                      color: Colors.white,
+                      backgroundColor: Color(0xffff3063),
+                    ),
+                  ),
+                ),
+              ),
+          ],
         );
       },
     );
@@ -63,10 +98,7 @@ class _DogsViewState extends State<DogsView> {
           padding: const EdgeInsets.only(top: 23),
           child: GestureDetector(
             onTap: () {},
-            child: _animalTem(
-              l_!,
-              size,
-            ),
+            child: _animalTem(l_!, size),
           ),
         ),
         SizedBox(width: size.width * 0.01),
