@@ -1,3 +1,4 @@
+import 'package:dog_app/feactures/animal/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 import '/feactures/animal/presentation/resources/resources.dart';
@@ -44,7 +45,17 @@ class InfoDetailAnimalWidget extends StatelessWidget {
           _vacunateContainer(size, Colors.red, isDarkMode!),
           SizedBox(height: size.height * 0.018),
           _ubicationInfo(size, isDarkMode!),
-          _sobrePets(size, isDarkMode!)
+          GestureDetector(
+            onTap: () => showModalBottomSheet(
+              context: context,
+              builder: (context) => BottomShowModalWidget(
+                title: 'Sobre ${detailAnimal.name}',
+                text: detailAnimal.description,
+                isDarkMode: isDarkMode!,
+              ),
+            ),
+            child: _sobrePets(size, isDarkMode!),
+          ),
         ],
       ),
     );

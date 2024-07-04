@@ -24,12 +24,17 @@ class InfoAnimalScreen extends StatelessWidget {
           body: BlocBuilder<AnimalsListBloc, AnimalsListState>(
             builder: (context, state) {
               return state.isLoadingAnimal
-                  ?  LoadingInfoDeatilAnimalWidget(isDarkMode: stateTheme.isDarkMode)
-                  : Column(
-                      children: [
-                        CarouselImageDetailWidget(listPhotos: state.animalInfo!.photos),
-                        Expanded(child: _buttomPartAnimalInfo(state.animalInfo!, size, stateTheme.isDarkMode)),
-                      ],
+                  ? LoadingInfoDeatilAnimalWidget(
+                      isDarkMode: stateTheme.isDarkMode)
+                  : SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          CarouselImageDetailWidget(
+                              listPhotos: state.animalInfo!.photos),
+                          _buttomPartAnimalInfo(
+                              state.animalInfo!, size, stateTheme.isDarkMode),
+                        ],
+                      ),
                     );
             },
           ),
@@ -46,10 +51,12 @@ class InfoAnimalScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          InfoDetailAnimalWidget(detailAnimal: animalInfo, isDarkMode: isDarkMode ),
+          InfoDetailAnimalWidget(
+              detailAnimal: animalInfo, isDarkMode: isDarkMode),
           SizedBox(height: size.height * 0.02),
-          InfoDetailButttonsWidget(name: animalInfo.name, isDarkMode: isDarkMode ),
-          SizedBox(height: size.height * 0.01),
+          InfoDetailButttonsWidget(
+              name: animalInfo.name, isDarkMode: isDarkMode),
+          SizedBox(height: size.height * 0.02),
         ],
       ),
     );

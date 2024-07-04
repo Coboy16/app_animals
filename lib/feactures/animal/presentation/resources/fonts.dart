@@ -187,7 +187,7 @@ TextStyle titleSobrePetsDetailPets(bool isDarkMode) {
 TextStyle subTitleSobreDetailPets(bool isDarkMode) {
   return GoogleFonts.workSans(
     fontSize: 16,
-    color: isDarkMode ? Colors.white70 : Colors.grey,
+    color: isDarkMode ? Colors.white70 : Colors.grey.shade600,
     fontWeight: FontWeight.w500,
     letterSpacing: -0.5,
   );
@@ -199,5 +199,14 @@ TextStyle titleBtnAdoptDetailPets() {
     fontSize: 18,
     fontWeight: FontWeight.w600,
     letterSpacing: 0.1,
+  );
+}
+
+TextStyle searchMascota(bool isDarkMode) {
+  return GoogleFonts.quicksand(
+    fontSize: 16,
+    color: isDarkMode ? Colors.white60 : const Color.fromARGB(255, 36, 40, 44),
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0,
   );
 }

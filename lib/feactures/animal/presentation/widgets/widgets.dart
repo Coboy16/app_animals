@@ -11,3 +11,6 @@ export './info_detail_animal_widget.dart';
 export './info_detail_butttons_widget.dart';
 export './carousel_image_detail_widget.dart';
 export './loading_info_deatil_animal_widget.dart';
+export './bottom_show_modal_widget.dart';
+export './search_widget.dart';
+export './select_option_search_widget.dart';

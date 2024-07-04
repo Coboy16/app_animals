@@ -46,3 +46,6 @@ Color colorBubleIcon(bool isDarkMode) =>
 
 Color colorTopDetailAnimal(bool isDarkMode) =>
     isDarkMode ? Colors.black : const Color(0xfff8fafa);
+
+Color colorSearch(bool isDarkMode) =>
+    isDarkMode ? const Color(0xff222222) : Colors.grey.shade200;

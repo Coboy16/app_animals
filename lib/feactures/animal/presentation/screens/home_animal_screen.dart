@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '/feactures/animal/presentation/resources/resources.dart';
+import '/feactures/animal/presentation/screens/screens.dart';
 import '/feactures/animal/presentation/widgets/widgets.dart';
 import '/feactures/animal/presentation/blocs/blocs.dart';
 import '/feactures/animal/presentation/views/views.dart';
@@ -19,7 +20,7 @@ class HomeAnimalScreen extends StatelessWidget {
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: _appBar(size, state.isDarkMode),
+          appBar: _appBar(context ,size, state.isDarkMode),
           backgroundColor: colorBase(state.isDarkMode),
           bottomNavigationBar: const NavigationBarWidget(),
           body: SizedBox.expand(
@@ -32,7 +33,7 @@ class HomeAnimalScreen extends StatelessWidget {
     );
   }
 
-  _appBar(Size size, bool darkMode) {
+  _appBar(BuildContext context ,Size size, bool darkMode) {
     return AppBar(
       elevation: 0,
       surfaceTintColor: colorBase(darkMode),
@@ -53,10 +54,18 @@ class HomeAnimalScreen extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 15, top: 10),
           child: FadeInRight(
-            child: FaIcon(
-              FontAwesomeIcons.magnifyingGlass,
-              size: size.height * 0.026,
-              color: colorBell(!darkMode),
+            child: GestureDetector(
+              onTap: () => Navigator.push(context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) => const SearchAnimalScreen(),
+                  transitionDuration: const Duration(seconds: 0),
+                ),
+              ),
+              child: FaIcon(
+                FontAwesomeIcons.magnifyingGlass,
+                size: size.height * 0.026,
+                color: colorBell(!darkMode),
+              ),
             ),
           ),
         )
