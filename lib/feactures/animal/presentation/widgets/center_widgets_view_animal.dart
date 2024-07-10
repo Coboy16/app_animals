@@ -52,6 +52,7 @@ class CenterWidgetsViewAnimal extends StatelessWidget {
       name: animal.name,
       race: animal.race,
       id: animal.id,
+      type: animal.type,
     );
   }
 }

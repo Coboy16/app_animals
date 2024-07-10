@@ -210,3 +210,30 @@ TextStyle searchMascota(bool isDarkMode) {
     letterSpacing: 0,
   );
 }
+
+TextStyle tagAnimalFavorite() {
+  return GoogleFonts.workSans(
+    fontSize: 14,
+    color: Colors.white,
+    fontWeight: FontWeight.w400,
+    letterSpacing: -0.5,
+  );
+}
+
+TextStyle titlePetsFavorite() {
+  return GoogleFonts.poppins(
+    color: Colors.black,
+    fontSize: 21,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.1,
+  );
+}
+
+TextStyle razaAnimalFavorite() {
+  return GoogleFonts.workSans(
+    fontSize: 16,
+    color: Colors.grey,
+    fontWeight: FontWeight.w500,
+    letterSpacing: -0.5,
+  );
+}

@@ -8,7 +8,8 @@ import 'package:equatable/equatable.dart';
 part 'favorites_animals_event.dart';
 part 'favorites_animals_state.dart';
 
-class FavoritesAnimalsBloc extends Bloc<FavoritesAnimalsEvent, FavoritesAnimalsState> {
+class FavoritesAnimalsBloc
+    extends Bloc<FavoritesAnimalsEvent, FavoritesAnimalsState> {
   final GetListFavoritesAnimalUseCase _getListFavoritesAnimalUseCase;
   final IsFavoriteAnimalUseCase _isFavoriteAnimalUseCase;
   final RemoveFavoriteAnimalUseCase _removeFavoriteAnimalUseCase;
@@ -54,24 +55,28 @@ class FavoritesAnimalsBloc extends Bloc<FavoritesAnimalsEvent, FavoritesAnimalsS
     add(UpdateListAnimalFavoritesEvent());
   }
 
+  //todo: Agrega o elimina de favoritos
   void toogleFavorite(Animal animal) async {
     final isFavorite = await isVerifidFavorite(animal.id);
-    if (isFavorite) {
-      // Agrego el animal a la lista de favoritos
+    if (!isFavorite) {
+      //Se Agrega como favorito
       add(AddFavoriteAnimalEvent(animal: animal));
     } else {
-      // Elimino el animal de la data
+      //Se elimina de favorito
       add(RemoveAnimalIsFavoriteEvent(animal.id));
     }
   }
 
+  //todo: verifica si ya esta marcado como favorito
   Future<bool> isVerifidFavorite(String id) async {
     bool isFavorite = false;
     final resp = await _isFavoriteAnimalUseCase(id);
 
     resp.fold(
       (failure) => add(ErrorFailureEvent(failure)),
-      (resp) { isFavorite = resp; },
+      (resp) {
+        isFavorite = resp;
+      },
     );
 
     return isFavorite;

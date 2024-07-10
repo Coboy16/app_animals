@@ -10,29 +10,40 @@ import '/feactures/animal/domain/entities/entities.dart';
 import '/feactures/animal/presentation/blocs/blocs.dart';
 import '/shared/presentation/blocs/blocs.dart';
 
-class InfoAnimalScreen extends StatelessWidget {
+class InfoAnimalScreen extends StatefulWidget {
   const InfoAnimalScreen({super.key});
+
+  @override
+  State<InfoAnimalScreen> createState() => _InfoAnimalScreenState();
+}
+
+class _InfoAnimalScreenState extends State<InfoAnimalScreen> {
+  late FavoritesAnimalsBloc _favoritesAnimalsBloc;
+
+  @override
+  void initState() {
+    _favoritesAnimalsBloc = BlocProvider.of<FavoritesAnimalsBloc>(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, stateTheme) {
         return Scaffold(
           backgroundColor: colorBase(stateTheme.isDarkMode),
-          appBar: _appBar(context, size, stateTheme.isDarkMode),
+          appBar: _appBar(size, stateTheme.isDarkMode),
           body: BlocBuilder<AnimalsListBloc, AnimalsListState>(
             builder: (context, state) {
               return state.isLoadingAnimal
-                  ? LoadingInfoDeatilAnimalWidget(
-                      isDarkMode: stateTheme.isDarkMode)
+                  ? LoadingInfoDeatilAnimalWidget(isDarkMode: stateTheme.isDarkMode)
                   : SingleChildScrollView(
                       child: Column(
                         children: [
-                          CarouselImageDetailWidget(
-                              listPhotos: state.animalInfo!.photos),
-                          _buttomPartAnimalInfo(
-                              state.animalInfo!, size, stateTheme.isDarkMode),
+                          CarouselImageDetailWidget(listPhotos: state.animalInfo!.photos),
+                          _buttomPartAnimalInfo(state.animalInfo!, size, stateTheme.isDarkMode),
                         ],
                       ),
                     );
@@ -51,18 +62,16 @@ class InfoAnimalScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          InfoDetailAnimalWidget(
-              detailAnimal: animalInfo, isDarkMode: isDarkMode),
+          InfoDetailAnimalWidget(detailAnimal: animalInfo, isDarkMode: isDarkMode),
           SizedBox(height: size.height * 0.02),
-          InfoDetailButttonsWidget(
-              name: animalInfo.name, isDarkMode: isDarkMode),
+          InfoDetailButttonsWidget(name: animalInfo.name, isDarkMode: isDarkMode),
           SizedBox(height: size.height * 0.02),
         ],
       ),
     );
   }
 
-  _appBar(BuildContext context, Size size, bool isDarkMode) {
+  _appBar(Size size, bool isDarkMode) {
     return AppBar(
       elevation: 0,
       surfaceTintColor: colorTopDetailAnimal(isDarkMode),
@@ -74,12 +83,16 @@ class InfoAnimalScreen extends StatelessWidget {
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 15),
-          child: FadeInRight(
-            child: FaIcon(
-              FontAwesomeIcons.solidHeart,
-              size: size.height * 0.025,
-              color: colorHead(isDarkMode),
-            ),
+          child: BlocBuilder<AnimalsListBloc, AnimalsListState>(
+            builder: (context, state) {
+              return FadeInRight(
+                child: FaIcon(
+                  FontAwesomeIcons.solidHeart,
+                  size: size.height * 0.025,
+                  color: colorHead(isDarkMode),
+                ),
+              );
+            },
           ),
         ),
       ],
