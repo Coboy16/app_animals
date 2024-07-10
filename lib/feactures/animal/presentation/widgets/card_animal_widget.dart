@@ -92,7 +92,9 @@ class AnimalCardWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 10, bottom: 5),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                print('object');
+              },
               child: const FaIcon(
                 FontAwesomeIcons.heart,
                 size: 28,

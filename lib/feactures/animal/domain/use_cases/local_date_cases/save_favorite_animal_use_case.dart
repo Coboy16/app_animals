@@ -10,5 +10,5 @@ class SaveAnimalFavoriteUseCase {
   SaveAnimalFavoriteUseCase({required this.animalsRepository});
 
   Future<Either<Failure, bool>> call(Animal animal) =>
-      animalsRepository.saveAnimalFavorite(animal);
+      animalsRepository.addFavoriteAnimal(animal);
 }

@@ -10,6 +10,7 @@ List<SingleChildWidget> getListBlocAnimal() {
   return [
     BlocProvider(create: (_) => GetIt.instance.get<AnimalsListBloc>()),
     BlocProvider(create: (_) => NavegationBarBloc()),
+    BlocProvider(create: (_) => GetIt.instance.get<FavoritesAnimalsBloc>()),
     BlocProvider(create: (_) => SearchAnimalBloc()),
   ];
 }

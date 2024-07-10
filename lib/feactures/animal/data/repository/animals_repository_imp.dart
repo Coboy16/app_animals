@@ -49,9 +49,29 @@ class AnimalsRepositoryImp implements AnimalsRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> saveAnimalFavorite(Animal animal) async {
+  Future<Either<Failure, bool>> addFavoriteAnimal(Animal animal) async {
     try {
-      final bool respSave = await animalLocalDataSource.saveFavoriteAnimal(animal);
+      final bool respSave = await animalLocalDataSource.addFavoriteAnimal(animal);
+      return Right(respSave);
+    } on LocalFailure {
+      return Left(LocalFailure());
+    }
+  }
+  
+  @override
+  Future<Either<Failure, bool>> isFavoriteAnimal(String id) async {
+    try {
+      final bool respSave = await animalLocalDataSource.isFavoriteAnimal(id);
+      return Right(respSave);
+    } on LocalFailure {
+      return Left(LocalFailure());
+    }
+  }
+  
+  @override
+  Future<Either<Failure, bool>> removeFavoriteAnimal(String id) async {
+    try {
+      final bool respSave = await animalLocalDataSource.removeFavoriteAnimal(id);
       return Right(respSave);
     } on LocalFailure {
       return Left(LocalFailure());
