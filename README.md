@@ -1,16 +1,22 @@
-# dog_app
+# Flutter Pet Adoption App
 
-A new Flutter project.
+Welcome to our Flutter Pet Adoption app! This modern and intuitive app is designed to simulate the pet adoption process, providing users with a seamless experience as they browse through adorable pets looking for a new home.
 
-## Getting Started
+![App UI](/ui.jpg)
 
-This project is a starting point for a Flutter application.
+## Features
+- **Browse Pets:** Explore a variety of pets available for adoption, neatly organized in different categories.
+- **Pet Details:** Dive deeper into each pet’s profile to view their pictures, description, age, and other important details.
+- **Adoption Process:** Easily start the adoption process with a user-friendly interface guiding you through each step.
+- **Favorite Pets:** Mark pets as favorites to keep track of the ones you are most interested in.
+- **Responsive Design:** The app is optimized for a smooth experience on both Android and iOS devices.
 
-A few resources to get you started if this is your first Flutter project:
+## Architecture
+This application is built using the Clean Architecture approach in Flutter, ensuring a robust, maintainable, and scalable codebase. Clean Architecture helps in separating the different layers of the app, making the code more modular and testable.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Acknowledgements
+A huge thank you to the talented designer behind the beautiful pet adoption app design:
+- **Designer:** [Dribbble](https://dribbble.com/shots/17870373-Pet-adoption-app)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
